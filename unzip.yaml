@@ -5,5 +5,5 @@
     - name: Unzip the Django files
       unarchive:
         src: /opt/majorproject.zip  # Specify the path to your ZIP file
-        dest: /opt/project # Specify the destination directory
+        dest: /opt # Specify the destination directory
         remote_src: yes
