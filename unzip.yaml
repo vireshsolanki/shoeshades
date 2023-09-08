@@ -1,0 +1,9 @@
+---
+- hosts: ansible-server  # Replace with your target Ansible server(s) or group
+  become: yes  # Ensure you have appropriate privileges to unzip the file
+  tasks:
+    - name: Unzip the Django files
+      unarchive:
+        src: /opt/project.zip  # Specify the path to your ZIP file
+        dest: /opt/  # Specify the destination directory
+        remote_src: yes
