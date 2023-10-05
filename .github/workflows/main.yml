@@ -1,0 +1,51 @@
+name: website deployment
+on:
+  push:
+    branches:
+    - master
+jobs:
+  deploy:
+    name: deploy to staging
+    runs-on: ubuntu-18.04
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v1
+    - name: Setup docker buildx
+      uses: docker/setup-buildx-action@v3.0.0
+    - name: docker login
+      run: docker login -u ${{secrets.docker_username}} -p ${{secrets.docker_password}}
+    - name: build and push
+      run: |
+        docker build -t vireshsolanki/myproject:1.0 .
+        docker push vireshsolanki/myproject:1.0
+      env:
+        DOCKER_USERNAME: ${{secrets.docker_username}}
+        DOCKER_PASSWORD: ${{secrets.docker_password}}
+    - name: Setup Python
+      uses: actions/setup-python@v2
+      with:
+    # Version range or exact version of Python or PyPy to use, using SemVer's version range syntax. Reads from .python-version if unset.
+         python-version: 3.1
+    - name: Install dependencies
+      run: pip install -r requirements.txt
+    - name: aws cli
+      uses: aws-actions/configure-aws-credentials@v2
+      with:
+        aws-access-key-id: ${{ secrets.access_key}}
+        aws-secret-access-key: ${{secrets.secret_key}}
+        aws-region: ap-south-1
+    - name: authenticate eks
+      run: aws eks --region ap-south-1 update-kubeconfig --name eks
+    - name: create namespace
+      run: kubectl create namespace my-namespace
+    - name: deploy to eks
+      run: kubectl apply -f deployment.yml
+    - name: run database migrations
+      run: |
+        kubectl exec -it deployment/my-django-app -n my-namespace -- python manage.py migrate
+      env:
+        DJANGO_SETTINGS_MODULE: "shoeshade.settings"
+      
+        
+   
