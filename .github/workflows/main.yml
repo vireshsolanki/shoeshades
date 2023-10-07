@@ -33,11 +33,11 @@ jobs:
     
     - name: Install dependencies
       run: pip install -r requirements.txt
-    - name: Install kubectl
-      run: |
-          curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
-          chmod +x kubectl
-          sudo mv kubectl /usr/local/bin/
+    # - name: Install kubectl
+    #   run: |
+    #       curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+    #       chmod +x kubectl
+    #       sudo mv kubectl /usr/local/bin/
     - name: aws cli
       uses: aws-actions/configure-aws-credentials@v2
       with:
@@ -49,15 +49,15 @@ jobs:
     - name: List EKS Clusters
       run: aws eks list-clusters --region ap-south-1
   
-    - name: create namespace
-      run: kubectl create namespace my-namespace
+    # - name: create namespace
+    #   run: kubectl create namespace my-namespace
     - name: deploy to eks
       run: kubectl apply -f deployment.yml
-    - name: run database migrations
-      run: |
-        kubectl exec -it deployment/my-django-app -n my-namespace -- python manage.py migrate
-      env:
-        DJANGO_SETTINGS_MODULE: "shoeshade.settings"
+    # - name: run database migrations
+    #   run: |
+    #     kubectl exec -it deployment/my-django-app -n my-namespace -- python manage.py migrate
+    #   env:
+    #     DJANGO_SETTINGS_MODULE: "shoeshade.settings"
       
         
    
