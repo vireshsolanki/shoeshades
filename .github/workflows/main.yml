@@ -61,6 +61,11 @@ jobs:
       run: kubectl version --client
     - name: dry check
       run: kubectl get nodes
+    - name: Set KUBECONFIG
+      run: echo "::set-env name=KUBECONFIG::/path/to/your/kubeconfig.yaml"
+    - name: Debug AWS Configuration
+      run: |
+        aws configure list
 
     # - name: create namespace
     #   run: kubectl create namespace my-namespace
