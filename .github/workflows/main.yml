@@ -60,9 +60,9 @@ jobs:
 
     # - name: create namespace
     #   run: kubectl create namespace my-namespace
-    # - name: deploy to eks
-    #   run: kubectl apply -f deployment.yml
-    # # - name: run database migrations
+    - name: deploy to eks
+      run: kubectl apply -f deployment.yml
+    # - name: run database migrations
     #   run: |
     #     kubectl exec -it deployment/my-django-app -n my-namespace -- python manage.py migrate
     #   env:
