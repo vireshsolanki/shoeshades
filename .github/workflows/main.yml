@@ -8,14 +8,7 @@ jobs:
     name: deploy to staging
     runs-on: self-hosted
     steps:    
-    - name: Upgrade pip
-      run: python3 -m pip install --upgrade pip
-    - name: Debug Python Versions
-      run: |
-        python -V
-        python3 -V
-        python3.9 -V
-  
+    
     # - name: Setup Python
     #   uses: actions/setup-python@v2
     #   with:
@@ -37,8 +30,14 @@ jobs:
       env:
         DOCKER_USERNAME: ${{secrets.DOCKER_USERNAME}}
         DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
+    
     - name: Install dependencies
       run: pip install -r requirements.txt
+    - name: Install kubectl
+      run: |
+          curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+          chmod +x kubectl
+          sudo mv kubectl /usr/local/bin/
     - name: aws cli
       uses: aws-actions/configure-aws-credentials@v2
       with:
