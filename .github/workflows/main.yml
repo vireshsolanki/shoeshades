@@ -62,7 +62,7 @@ jobs:
     # - name: dry check
     #   run: kubectl get nodes
     - name: Set KUBECONFIG
-      run: echo "::set-env name=KUBECONFIG::/path/to/your/kubeconfig.yaml"
+      run: echo "KUBECONFIG=/path/to/your/kubeconfig.yaml" >> $GITHUB_ENV
     - name: Debug AWS Configuration
       run: |
         aws configure list
