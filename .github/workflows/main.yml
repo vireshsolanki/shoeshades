@@ -16,11 +16,17 @@ jobs:
         
     - name: Upgrade pip
       run: python3 -m pip install --upgrade pip
-    - name: Setup Python
-      uses: actions/setup-python@v2
-      with:
-         python-version: ${{matrix.python-version}}
-    - name: Checkout code
+    - name: Debug Python Versions
+      run: |
+        python -V
+        python3 -V
+        python3.9 -V
+  
+    # - name: Setup Python
+    #   uses: actions/setup-python@v2
+    #   with:
+    #      python-version: ${{matrix.python-version}}
+     - name: Checkout code
       uses: actions/checkout@v1
     - name: Setup docker buildx
       uses: docker/setup-buildx-action@v3.0.0
