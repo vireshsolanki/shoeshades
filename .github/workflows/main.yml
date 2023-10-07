@@ -31,7 +31,6 @@ jobs:
       with:
     # Version range or exact version of Python or PyPy to use, using SemVer's version range syntax. Reads from .python-version if unset.
          python-version: 3.9
-         cache-key: python39-${{ runner.os }}
     - name: Install dependencies
       run: pip install -r requirements.txt
     - name: aws cli
