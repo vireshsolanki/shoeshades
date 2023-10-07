@@ -44,6 +44,16 @@ jobs:
         aws-access-key-id: ${{ secrets.ACCESS_KEY}}
         aws-secret-access-key: ${{secrets.SECRET_KEY}}
         aws-region: ap-south-1
+    - name: Download Kubeconfig
+      run: |
+        aws eks --region ap-south-1 update-kubeconfig --name eks
+        mkdir -p $HOME/.kube
+        mv ~/.kube/config $HOME/.kube/config
+      env:
+        KUBECONFIG: $HOME/.kube/config
+
+    - name: Verify Kubeconfig
+      run: kubectl config get-contexts
     - name: authenticate eks
       run: aws eks --region ap-south-1 update-kubeconfig --name eks
     - name: List EKS Clusters
@@ -51,9 +61,9 @@ jobs:
   
     # - name: create namespace
     #   run: kubectl create namespace my-namespace
-    - name: deploy to eks
-      run: kubectl apply -f deployment.yml
-    # - name: run database migrations
+    # - name: deploy to eks
+    #   run: kubectl apply -f deployment.yml
+    # # - name: run database migrations
     #   run: |
     #     kubectl exec -it deployment/my-django-app -n my-namespace -- python manage.py migrate
     #   env:
