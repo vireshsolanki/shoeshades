@@ -48,8 +48,6 @@ jobs:
       run: aws eks --region ap-south-1 update-kubeconfig --name eks
     - name: List EKS Clusters
       run: aws eks list-clusters --region ap-south-1
-    - name: Debug Kubernetes Configuration
-      run: kubectl config view
   
     # - name: create namespace
     #   run: kubectl create namespace my-namespace
