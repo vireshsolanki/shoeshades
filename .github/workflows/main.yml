@@ -10,9 +10,16 @@ jobs:
     strategy:
      max-parallel: 4
      matrix:
-       python-version: [3.8]
+       python-version: [3.9]
      
     steps:
+    - name: Cache Python 3.9.7 installation
+      uses: actions/cache@v3
+      with:
+          path: /tmp/python-cache
+          key: ${{ runner.os }}-python-${{ inputs.python-version }}
+          restore-keys: |
+            ${{ runner.os }}-python-
     - name: Checkout code
       uses: actions/checkout@v1
     - name: Setup docker buildx
