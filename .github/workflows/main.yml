@@ -66,6 +66,12 @@ jobs:
     - name: Debug AWS Configuration
       run: |
         aws configure list
+    - name: Find konfig.yml path
+      run: |
+        echo "Current directory: $(pwd)"
+        ls -l
+        find . -name konfig.yml
+
 
     # - name: create namespace
     #   run: kubectl create namespace my-namespace
