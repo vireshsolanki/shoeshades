@@ -55,6 +55,8 @@ jobs:
       run: aws eks --region ap-south-1 update-kubeconfig --name eks
     - name: List EKS Clusters
       run: aws eks list-clusters --region ap-south-1
+    - name: get context
+      run: kubectl config get-contexts
     - name: Check kubectl Version
       run: kubectl version --client
     - name: dry check
