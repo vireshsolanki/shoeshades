@@ -66,11 +66,8 @@ jobs:
     - name: Authenticate with Kubernetes Cluster
       run: kubectl config use-context arn:aws:eks:ap-south-1:678576703961:cluster/eks
     - name: dry check
-      run: kubectl get nodes
-    - name: Debug AWS Configuration
-      run: |
-        aws configure list
-
+      run: kubectl get svc
+    
 
     # - name: create namespace
     #   run: kubectl create namespace my-namespace
