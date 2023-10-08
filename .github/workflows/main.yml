@@ -61,6 +61,10 @@ jobs:
     - name: create namespace
       run: kubectl create namespace my-namespace
     - name: deploy to eks
+      run: kubectl apply -f secret.yml
+    - name: deploy to eks
+      run: kubectl apply -f my-django-app-service.yml
+    - name: deploy to eks
       run: kubectl apply -f deployment.yml
     # - name: run database migrations
     #   run: |
