@@ -83,7 +83,7 @@ DATABASES = {
         'NAME': 'mydb',
         'USER': 'admin',
         'PASSWORD': 'passw0rd!123',
-        'HOST': 'mydb-1.cktmkdbirt3n.ap-south-1.rds.amazonaws.com',
+        'HOST': 'terraform-20231008155010428500000001.cktmkdbirt3n.ap-south-1.rds.amazonaws.com',
         'PORT': '3306',  
     }
 }
