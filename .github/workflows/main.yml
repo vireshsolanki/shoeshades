@@ -46,13 +46,13 @@ jobs:
     #   run: kubectl config get-contexts
     - name: authenticate eks
       run: aws eks --region ap-south-1 update-kubeconfig --name pc-eks
-    - name: List EKS Clusters
-      run: aws eks list-clusters --region ap-south-1
-    - name: get context
-      run: kubectl config get-contexts
-    - name: Check kubectl Version
-      run: kubectl version --client
-    # - name: Authenticate with Kubernetes Cluster
+    # - name: List EKS Clusters
+    #   run: aws eks list-clusters --region ap-south-1
+    # - name: get context
+    #   run: kubectl config get-contexts
+    # - name: Check kubectl Version
+    #   run: kubectl version --client
+    # # - name: Authenticate with Kubernetes Cluster
     #   run: kubectl config use-context 
     - name: dry check
       run: kubectl get svc
