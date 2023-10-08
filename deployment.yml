@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: my-django-app
-  namespace: my-namespace  
+  namespace: my-namespace
   labels:
     app: my-django-app
 spec:
@@ -20,3 +20,20 @@ spec:
           image: vireshsolanki/myproject:1.0
           ports:
             - containerPort: 8000
+          env:
+            - name: DB_HOST
+              value: 'terraform-20231008155010428500000001.cktmkdbirt3n.ap-south-1.rds.amazonaws.com'
+            - name: DB_PORT
+              value: "3306"
+            - name: DB_NAME
+              value: mydb
+            - name: DB_USER
+              valueFrom:
+                secretKeyRef:
+                  name: db-secret
+                  key: username
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: db-secret
+                  key: password
