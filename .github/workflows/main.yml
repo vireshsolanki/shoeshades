@@ -31,8 +31,8 @@ jobs:
         DOCKER_USERNAME: ${{secrets.DOCKER_USERNAME}}
         DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
     
-    # - name: Install dependencies
-    #   run: pip3 install -r requirements.txt
+    - name: Install dependencies
+      run: pip3 install -r requirements.txt
     - name: Set up AWS credentials
       env:
         AWS_ACCESS_KEY_ID: ${{ secrets.ACCESS_KEY }}
@@ -56,18 +56,18 @@ jobs:
     #   run: kubectl config use-context 
     # - name: dry check
     #   run: kubectl get svc
-    - name: delete namespace 
-      run : kubectl delete namespace my-namespace
+    # - name: delete namespace 
+    #   run : kubectl delete namespace my-namespace
 
-    - name: create namespace
-      run: kubectl create namespace my-namespace
-    - name: deploy to eks
-      run: kubectl apply -f secret.yml
-    - name: deploy service to eks
-      run: kubectl apply -f service.yml
-    - name: deploy to eks
-      run: kubectl apply -f deployment.yml
-    # - name: run database migrations
+    # - name: create namespace
+    #   run: kubectl create namespace my-namespace
+    # - name: deploy to eks
+    #   run: kubectl apply -f secret.yml
+    # - name: deploy service to eks
+    #   run: kubectl apply -f service.yml
+    # - name: deploy to eks
+    #   run: kubectl apply -f deployment.yml
+    # # - name: run database migrations
     #   run: kubectl apply -f migrate.yml
         
    
