@@ -9,10 +9,10 @@ jobs:
     runs-on: self-hosted
     steps:    
     
-    - name: Setup Python
-      uses: actions/setup-python@v2
-      with:
-         python-version: "2.7"
+    # - name: Setup Python
+    #   uses: actions/setup-python@v2
+    #   with:
+    #      python-version: "2.7"
     - name: Checkout code
       uses: actions/checkout@v1
     - name: Setup docker buildx
@@ -22,30 +22,30 @@ jobs:
       with:
         username: ${{secrets.DOCKER_USERNAME}}
         password: ${{secrets.DOCKER_PASSWORD}}
-      #run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
-    # - name: build and push
-    #   run: |
-    #     docker build -t vireshsolanki/myproject:1.0 .
-    #     docker push vireshsolanki/myproject:1.0
-    #   env:
-    #     DOCKER_USERNAME: ${{secrets.DOCKER_USERNAME}}
-    #     DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
-    
+        run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
     - name: Install dependencies
       run: pip3 install -r requirements.txt
-    # - name: Set up AWS credentials
-    #   env:
-    #     AWS_ACCESS_KEY_ID: ${{ secrets.ACCESS_KEY }}
-    #     AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_KEY }}
-    #     AWS_DEFAULT_REGION: ap-south-1 # Change to your desired AWS region
-    #   run: |
-    #     aws configure set aws_access_key_id $AWS_ACCESS_KEY_ID
-    #     aws configure set aws_secret_access_key $AWS_SECRET_ACCESS_KEY
-    #     aws configure set region $AWS_DEFAULT_REGION
+    - name: build and push
+      run: |
+        docker build -t vireshsolanki/myproject:1.0 .
+        docker push vireshsolanki/myproject:1.0
+      env:
+        DOCKER_USERNAME: ${{secrets.DOCKER_USERNAME}}
+        DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
+    
+    - name: Set up AWS credentials
+      env:
+        AWS_ACCESS_KEY_ID: ${{ secrets.ACCESS_KEY }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_KEY }}
+        AWS_DEFAULT_REGION: ap-south-1 # Change to your desired AWS region
+      run: |
+        aws configure set aws_access_key_id $AWS_ACCESS_KEY_ID
+        aws configure set aws_secret_access_key $AWS_SECRET_ACCESS_KEY
+        aws configure set region $AWS_DEFAULT_REGION
     # # - name: Verify Kubeconfig
     # #   run: kubectl config get-contexts
-    # - name: authenticate eks
-    #   run: aws eks --region ap-south-1 update-kubeconfig --name eks
+    - name: authenticate eks
+      run: aws eks --region ap-south-1 update-kubeconfig --name eks
     # # - name: List EKS Clusters
     #   run: aws eks list-clusters --region ap-south-1
     # - name: get context
@@ -56,17 +56,17 @@ jobs:
     #   run: kubectl config use-context 
     # - name: dry check
     #   run: kubectl get svc
-    # - name: delete namespace 
-    #   run : kubectl delete namespace my-namespace
+    - name: delete namespace 
+      run : kubectl delete namespace my-namespace
 
-    # - name: create namespace
-    #   run: kubectl create namespace my-namespace
-    # - name: deploy to eks
-    #   run: kubectl apply -f secret.yml
-    # - name: deploy service to eks
-    #   run: kubectl apply -f service.yml
-    # - name: deploy to eks
-    #   run: kubectl apply -f deployment.yml
+    - name: create namespace
+      run: kubectl create namespace my-namespace
+    - name: deploy to eks
+      run: kubectl apply -f secret.yml
+    - name: deploy service to eks
+      run: kubectl apply -f service.yml
+    - name: deploy to eks
+      run: kubectl apply -f deployment.yml
     # # - name: run database migrations
     #   run: kubectl apply -f migrate.yml
         
