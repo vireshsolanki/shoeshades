@@ -56,7 +56,8 @@ jobs:
     #   run: kubectl config use-context 
     # - name: dry check
     #   run: kubectl get svc
-    
+    - name: delete namespace 
+      run : kubectl delete namespace my-namespace
 
     - name: create namespace
       run: kubectl create namespace my-namespace
