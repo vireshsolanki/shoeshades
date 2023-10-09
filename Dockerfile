@@ -17,6 +17,7 @@ WORKDIR /website
 # Copy the requirements file and install dependencies
 COPY requirements.txt requirements.txt
 RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install mysqlclient
 
 # Copy the rest of your project files
 COPY . .
