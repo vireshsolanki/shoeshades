@@ -67,7 +67,7 @@ jobs:
       run: kubectl apply -f service.yml
     - name: deploy to eks
       run: kubectl apply -f deployment.yml
-    - name: run database migrations
-      run: kubectl apply -f migrate.yml
+    # - name: run database migrations
+    #   run: kubectl apply -f migrate.yml
         
    
