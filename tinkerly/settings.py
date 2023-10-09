@@ -81,8 +81,8 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'mydb',
         'USER': 'admin',
-        'PASSWORD': 'passw0r!123',
-        'HOST': 'terraform-20231008121945622600000001.cktmkdbirt3n.ap-south-1.rds.amazonaws.com',
+        'PASSWORD': 'passw0rd!123',
+        'HOST': 'terraform-20231008155010428500000001.cktmkdbirt3n.ap-south-1.rds.amazonaws.com',
         'PORT': '3306',  # MySQL default port
     }   
 }
