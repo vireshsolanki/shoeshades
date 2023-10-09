@@ -75,10 +75,16 @@ WSGI_APPLICATION = 'tinkerly.wsgi.application'
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+     'default': {
+        # 'ENGINE': 'django.db.backends.sqlite3',
+        # 'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'mydb',
+        'USER': 'admin',
+        'PASSWORD': 'passw0r!123',
+        'HOST': 'terraform-20231008121945622600000001.cktmkdbirt3n.ap-south-1.rds.amazonaws.com',
+        'PORT': '3306',  # MySQL default port
+    }   
 }
 
 
