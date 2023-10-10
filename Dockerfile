@@ -4,9 +4,7 @@ ENV PYTHONUNBUFFERED=1
 RUN apt-get update && apt-get install -y \
     pkg-config \
     default-libmysqlclient-dev \
-    build-essential \
-    python3-dev \
-    libmysqlclient-dev
+    build-essential 
 RUN mkdir /website
 WORKDIR /website
 COPY requirements.txt requirements.txt
