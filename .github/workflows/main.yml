@@ -2,7 +2,7 @@ name: website deployment
 on:
   push:
     branches:
-    - main
+    - master
 jobs:
   deploy:
     name: deploy to staging
@@ -67,11 +67,11 @@ jobs:
       run: kubectl apply -f service.yml
     - name: deploy to eks
       run: kubectl apply -f deployment.yml
-    - name: run database migrations
-      run: |
-        kubectl exec -it deployment/my-django-app -n my-namespace -- python manage.py migrate
-      env:
-        DJANGO_SETTINGS_MODULE: "shoeshade.settings"
+    # - name: run database migrations
+    #   run: |
+    #     kubectl exec -it deployment/my-django-app -n my-namespace -- python manage.py migrate
+    #   env:
+    #     DJANGO_SETTINGS_MODULE: "shoeshade.settings"
       
         
    
