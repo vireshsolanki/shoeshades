@@ -1,11 +1,11 @@
 - hosts: webserver
   tasks:
-    # - name: stop container
-    #   shell:  docker container stop mywebsite                    
-    # - name: remove container
-    #   shell: docker container rm mywebsite
-    # - name: remove docker image
-    #   shell: docker image rm vireshsolanki/majorproject
+    - name: stop container
+      shell:  docker container stop mywebsite                    
+    - name: remove container
+      shell: docker container rm mywebsite
+    - name: remove docker image
+      shell: docker image rm vireshsolanki/majorproject
     - name: create a new container
       shell: docker run -d --name mywebsite -v /root/collection:/data -p 8000:8000 vireshsolanki/majorproject
       
